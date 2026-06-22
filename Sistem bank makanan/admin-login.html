@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrator - FoodRescue</title>
+    <meta name="description" content="Halaman login khusus Administrator untuk mengelola sistem bank makanan FoodRescue Lumajang.">
+    <link rel="stylesheet" href="app.css">
+    <style>
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px);
+            padding: 20px;
+        }
+        .login-card {
+            max-width: 450px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(239, 68, 68, 0.05);
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .login-header h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--danger), #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .login-header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .admin-badge {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .login-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .info-demo {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🍲</span>
+                <span>FoodRescue</span>
+            </div>
+            <div class="user-nav">
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Kembali</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <div class="login-container">
+            <div class="card login-card glow-indigo" style="border-color: rgba(239, 68, 68, 0.2);">
+                <div class="login-header">
+                    <div class="admin-badge">Panel Kontrol</div>
+                    <h2>Login Administrator</h2>
+                    <p>Khusus petugas Dinas Sosial & Pengurus Pusat FoodRescue Lumajang.</p>
+                </div>
+
+                <form id="form-login-admin">
+                    <div class="form-group">
+                        <label for="admin-username">Username</label>
+                        <input type="text" id="admin-username" class="form-control" placeholder="Masukkan username admin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" class="form-control" placeholder="Masukkan password admin" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-danger btn-submit">Masuk Sistem</button>
+                </form>
+
+                <div class="info-demo">
+                    🔑 <strong>Kredensial Demo Admin:</strong><br>
+                    Username: <code style="color:var(--danger)">admin</code><br>
+                    Password: <code style="color:var(--danger)">admin123</code>
+                </div>
+
+                <div class="login-footer">
+                    Bukan administrator? <a href="index.html">Kembali ke halaman utama</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted); background: var(--bg-base)">
+        <div class="container">
+            <p>© 2026 FoodRescue Platform (Sistem Bank Makanan) - Kota Lumajang. Dibuat untuk tujuan edukasi, responsif, dan mudah dipelajari.</p>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION HUB -->
+    <div class="toast-container" id="toast-hub"></div>
+
+    <script src="data.js"></script>
+    <script>
+        // Toast Helper
+        function showToast(message, type = 'success') {
+            const hub = document.getElementById('toast-hub');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type === 'error' ? 'toast-error' : type === 'warning' ? 'toast-warning' : 'toast-info'}`;
+            
+            let icon = '✔️';
+            if (type === 'error') icon = '❌';
+            if (type === 'warning') icon = '⚠️';
+            
+            toast.innerHTML = `
+                <div class="toast-icon">${icon}</div>
+                <div class="toast-message">${message}</div>
+            `;
+            
+            hub.appendChild(toast);
+            
+            // Remove after 3s
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.3s forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Form Submit Handler
+        document.getElementById('form-login-admin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('admin-username').value.trim();
+            const password = document.getElementById('admin-password').value;
+            
+            // Retrieve users from localStorage or initialize
+            let users = [];
+            try {
+                users = JSON.parse(localStorage.getItem('users'));
+            } catch(e) {}
+            
+            if (!users || !users.length) {
+                users = window.INITIAL_USERS || [];
+            }
+            
+            // Find administrator with matching credentials
+            const admin = users.find(u => u.username === username && u.role === 'admin');
+            
+            if (!admin) {
+                showToast('Akun Administrator tidak ditemukan.', 'error');
+                return;
+            }
+            
+            if (admin.password !== password) {
+                showToast('Password yang Anda masukkan salah.', 'error');
+                return;
+            }
+            
+            // Success - save session
+            localStorage.setItem('currentUser', JSON.stringify(admin));
+            
+            showToast('Login berhasil! Membuka Dashboard Admin...', 'success');
+            
+            // Redirect to index.html to load the dashboard
+            setTimeout(() => {
+                window.location.href = 'index.html?login_success=true';
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

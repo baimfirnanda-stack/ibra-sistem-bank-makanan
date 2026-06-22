@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun Baru - FoodRescue</title>
+    <meta name="description" content="Halaman pendaftaran donatur dan panti asuhan baru untuk platform penyelamatan makanan FoodRescue Lumajang.">
+    <link rel="stylesheet" href="app.css">
+    <style>
+        .register-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 180px);
+            padding: 20px;
+        }
+        .register-card {
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            box-shadow: var(--shadow-lg), 0 0 30px rgba(16, 185, 129, 0.05);
+        }
+        .register-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .register-header h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary), #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .register-header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .form-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 576px) {
+            .form-grid-2 {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+        .register-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        .register-footer a {
+            font-weight: 600;
+        }
+        /* Role Select Badge Styling */
+        .role-selector-wrapper {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .role-option {
+            flex: 1;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: var(--radius-sm);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .role-option:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .role-option.active[data-role="donor"] {
+            border-color: var(--primary);
+            background: rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.15);
+        }
+        .role-option.active[data-role="recipient"] {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+        }
+        .role-option-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .role-option-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER / NAVIGATION -->
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo" onclick="window.location.href='index.html'">
+                <span class="logo-icon">🍲</span>
+                <span>FoodRescue</span>
+            </div>
+            <div class="user-nav">
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">Kembali ke Beranda</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <div class="register-container">
+            <div class="card register-card glow-green">
+                <div class="register-header">
+                    <h2>Mendaftar Akun Baru</h2>
+                    <p>Silakan isi formulir di bawah. Akun baru memerlukan persetujuan Admin sebelum dapat digunakan untuk menjaga keamanan pangan.</p>
+                </div>
+
+                <form id="form-register-page">
+                    <!-- Custom Role Selector -->
+                    <label style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: var(--text-secondary);">Mendaftar Sebagai <span style="color:var(--danger)">*</span></label>
+                    <div class="role-selector-wrapper">
+                        <div class="role-option active" data-role="donor">
+                            <div class="role-option-icon">🏢</div>
+                            <div class="role-option-title">Donatur (HOREKA)</div>
+                        </div>
+                        <div class="role-option" data-role="recipient">
+                            <div class="role-option-icon">🏠</div>
+                            <div class="role-option-title">Penerima (Panti Asuhan)</div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="reg-role" value="donor">
+
+                    <div class="form-group">
+                        <label for="reg-name">Nama Institusi / Perusahaan <span style="color:var(--danger)">*</span></label>
+                        <input type="text" id="reg-name" class="form-control" placeholder="Contoh: Hotel Lumajang, Panti Asuhan Kasih" required>
+                    </div>
+
+                    <div class="form-grid-2">
+                        <div class="form-group">
+                            <label for="reg-username">Username <span style="color:var(--danger)">*</span></label>
+                            <input type="text" id="reg-username" class="form-control" placeholder="Username unik" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Password <span style="color:var(--danger)">*</span></label>
+                            <input type="password" id="reg-password" class="form-control" placeholder="Password minimal 6 karakter" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reg-phone">Nomor Telepon / WhatsApp <span style="color:var(--danger)">*</span></label>
+                        <input type="tel" id="reg-phone" class="form-control" placeholder="Contoh: 0812xxxxxxxx" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reg-address">Alamat Pengambilan / Lokasi Panti <span style="color:var(--danger)">*</span></label>
+                        <textarea id="reg-address" class="form-control" rows="3" placeholder="Nama Jalan, Kelurahan, Kec. Lumajang..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-submit">Daftar Akun Baru</button>
+
+                    <div class="register-footer">
+                        Sudah memiliki akun? <a href="index.html?open_login=true">Masuk di sini</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted); background: var(--bg-base)">
+        <div class="container">
+            <p>© 2026 FoodRescue Platform (Sistem Bank Makanan) - Kota Lumajang. Dibuat untuk tujuan edukasi, responsif, dan mudah dipelajari.</p>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION HUB -->
+    <div class="toast-container" id="toast-hub"></div>
+
+    <script src="data.js"></script>
+    <script>
+        // Custom Role Selector interactive behavior
+        const roleOptions = document.querySelectorAll('.role-option');
+        const roleInput = document.getElementById('reg-role');
+        const registerCard = document.querySelector('.register-card');
+
+        roleOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                roleOptions.forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+                
+                const selectedRole = opt.getAttribute('data-role');
+                roleInput.value = selectedRole;
+                
+                // Switch aesthetic glows based on role selection
+                if (selectedRole === 'donor') {
+                    registerCard.className = 'card register-card glow-green';
+                } else {
+                    registerCard.className = 'card register-card glow-indigo';
+                }
+            });
+        });
+
+        // Toast Helper
+        function showToast(message, type = 'success') {
+            const hub = document.getElementById('toast-hub');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type === 'error' ? 'toast-error' : type === 'warning' ? 'toast-warning' : 'toast-info'}`;
+            
+            let icon = '✔️';
+            if (type === 'error') icon = '❌';
+            if (type === 'warning') icon = '⚠️';
+            
+            toast.innerHTML = `
+                <div class="toast-icon">${icon}</div>
+                <div class="toast-message">${message}</div>
+            `;
+            
+            hub.appendChild(toast);
+            
+            // Remove after 3s
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.3s forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Form Submit Handler
+        document.getElementById('form-register-page').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const role = roleInput.value;
+            const name = document.getElementById('reg-name').value.trim();
+            const username = document.getElementById('reg-username').value.trim().toLowerCase();
+            const password = document.getElementById('reg-password').value;
+            const phone = document.getElementById('reg-phone').value.trim();
+            const address = document.getElementById('reg-address').value.trim();
+            
+            if (password.length < 6) {
+                showToast('Password harus minimal 6 karakter.', 'error');
+                return;
+            }
+
+            // Retrieve from localStorage or initialize
+            let users = [];
+            try {
+                users = JSON.parse(localStorage.getItem('users'));
+            } catch(e) {}
+            
+            if (!users || !users.length) {
+                users = window.INITIAL_USERS || [];
+            }
+            
+            // Check if username already exists
+            const userExists = users.some(u => u.username === username);
+            if (userExists) {
+                showToast('Username sudah digunakan oleh institusi lain.', 'error');
+                return;
+            }
+
+            // Simulate coordinates in Lumajang center
+            // Latitude range: -8.125 to -8.145
+            // Longitude range: 113.215 to 113.235
+            const randomOffsetLat = (Math.random() - 0.5) * 0.02; // max +- 0.01
+            const randomOffsetLng = (Math.random() - 0.5) * 0.02; // max +- 0.01
+            const latitude = -8.133 + randomOffsetLat;
+            const longitude = 113.224 + randomOffsetLng;
+
+            const newUser = {
+                id: `usr_${role}_${Date.now()}`,
+                username,
+                password,
+                name,
+                role,
+                verified: false, // Akun baru, butuh verifikasi admin
+                phone,
+                address,
+                city: 'Lumajang',
+                latitude,
+                longitude
+            };
+
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+
+            showToast('Pendaftaran akun berhasil! Mengalihkan ke Halaman Utama...', 'success');
+
+            // Redirect back with search param so beranda can show success info
+            setTimeout(() => {
+                window.location.href = `index.html?registered=true&name=${encodeURIComponent(name)}`;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

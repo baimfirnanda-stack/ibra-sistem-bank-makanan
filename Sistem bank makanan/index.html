@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Bank Makanan - Food Rescue Platform</title>
+    <meta name="description" content="Platform koordinasi penyelamatan makanan berlebih untuk donatur (hotel/restoran) dan panti asuhan di Lumajang guna menekan limbah pangan.">
+    <!-- Google Fonts & Stylesheet -->
+    <link rel="stylesheet" href="app.css">
+    <!-- Chart.js CDN for interactive graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- ==========================================
+         HEADER / NAVIGATION
+         ========================================== -->
+    <header>
+        <div class="container header-wrapper">
+            <div class="logo" id="btn-home">
+                <span class="logo-icon">🍲</span>
+                <span>FoodRescue</span>
+            </div>
+            
+            <div class="user-nav">
+                <!-- User Profile Info (Tampil setelah login) -->
+                <div id="user-profile-widget" style="display: none;">
+                    <div class="user-badge" id="user-badge-display">
+                        <span class="role-dot"></span>
+                        <span id="user-name-display">Nama Pengguna</span>
+                    </div>
+                </div>
+                <!-- Action Buttons -->
+                <button class="btn btn-secondary" id="btn-login-logout">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT AREA
+         ========================================== -->
+    <main class="container">
+        
+        <!-- 1. LANDING PAGE & LOGIN PANEL -->
+        <section id="panel-landing">
+            <div class="hero-section">
+                <span class="hero-tagline">Solusi Cerdas Pengurangan Limbah Makanan</span>
+                <h1 class="hero-title">Selamatkan Makanan Surplus, <br><span>Bantu Panti Asuhan</span></h1>
+                <p class="hero-desc">
+                    Sistem Bank Makanan berbasis web di Lumajang untuk mendistribusikan makanan berlebih dari restoran, hotel, dan katering (HOREKA) kepada panti asuhan secara cepat, aman, dan transparan.
+                </p>
+                <button class="btn btn-primary btn-lg" id="btn-register-trigger">Daftar Akun Baru</button>
+            </div>
+
+            <div class="role-grid">
+                <!-- Donatur Role Card -->
+                <div class="card role-card role-donor" id="card-role-donor">
+                    <div class="role-icon">🏢</div>
+                    <h3 class="role-name">Donatur (Restoran / Hotel)</h3>
+                    <p class="role-desc">Donasikan makanan berlebih layak konsumsi, kelola stok cadangan, pantau status klaim, dan pantau dampak lingkungan.</p>
+                    <div class="role-login-preview">
+                        <div class="form-group">
+                            <label>Login Instan Donatur:</label>
+                            <select class="form-control select-quick-login" data-role="donor">
+                                <option value="" disabled selected>Pilih Akun Demo...</option>
+                                <option value="hotel_plaza">Hotel Lumajang Plaza (Terverifikasi)</option>
+                                <option value="resto_selera">Resto Selera Rakyat (Terverifikasi)</option>
+                                <option value="bakery_citra">Bakery Citra Rasa (Belum Verifikasi)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Penerima Role Card -->
+                <div class="card role-card role-recipient" id="card-role-recipient">
+                    <div class="role-icon">🏠</div>
+                    <h3 class="role-name">Penerima (Panti Asuhan)</h3>
+                    <p class="role-desc">Cari makanan tersedia, klaim porsi, posting permintaan mendesak saat stok kosong, dan validasi setelah makanan diterima.</p>
+                    <div class="role-login-preview">
+                        <div class="form-group">
+                            <label>Login Instan Panti Asuhan:</label>
+                            <select class="form-control select-quick-login" data-role="recipient">
+                                <option value="" disabled selected>Pilih Akun Demo...</option>
+                                <option value="panti_kasih">Panti Asuhan Kasih Ibu (Terverifikasi)</option>
+                                <option value="panti_harapan">Panti Asuhan Harapan Bangsa (Terverifikasi)</option>
+                                <option value="peduli_sesama">Komunitas Peduli Sesama (Belum Verifikasi)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Role Card -->
+                <div class="card role-card role-admin" id="card-role-admin">
+                    <div class="role-icon">⚡</div>
+                    <h3 class="role-name">Administrator</h3>
+                    <p class="role-desc">Verifikasi pendaftaran akun baru secara manual, monitoring transaksi donasi global, dan analisis laporan statistika visual.</p>
+                    <div class="role-login-preview">
+                        <div class="form-group">
+                            <label>Login Instan Admin:</label>
+                            <select class="form-control select-quick-login" data-role="admin">
+                                <option value="" disabled selected>Pilih Akun Demo...</option>
+                                <option value="admin">Admin Pusat (Dicky)</option>
+                            </select>
+                        </div>
+                        <a href="admin-login.html" class="btn btn-danger btn-sm" style="width: 100%; margin-top: 8px; text-decoration: none;">Masuk Login Admin</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="register-helper">
+                Catatan: Anda juga bisa mengetik manual kredensial pada modal login. Username & Password demo: <strong>donor123</strong> (Donatur), <strong>panti123</strong> (Penerima), atau <strong>admin123</strong> (Admin). Anda juga dapat membuka <a href="admin-login.html" style="color: var(--danger); font-weight: 600;">Halaman Login Admin Khusus</a> atau <a href="register.html" style="color: var(--primary); font-weight: 600;">Halaman Daftar Akun Baru</a>.
+            </div>
+        </section>
+
+        <!-- 2. DASHBOARD PANEL WRAPPER -->
+        <section id="panel-dashboard" style="display: none;">
+            <div class="dashboard-grid" id="dashboard-layout-container">
+                
+                <!-- Sidebar Navigasi -->
+                <aside class="card sidebar">
+                    <ul class="sidebar-menu" id="sidebar-menu-list">
+                        <!-- Menu Items diisi dinamis oleh JavaScript berdasarkan role -->
+                    </ul>
+                </aside>
+
+                <!-- Dashboard Content Area -->
+                <div class="dashboard-content">
+                    
+                    <!-- Peta Simulasi Lumajang (Dipakai di beberapa dashboard) -->
+                    <div id="visual-map-card" class="card glow-green" style="margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                            <span>🗺️</span> Peta Sebaran & Status Distribusi Bank Makanan (Lumajang)
+                        </h4>
+                        <div class="map-container" id="simulated-map">
+                            <div class="map-radar"></div>
+                            <div class="map-sweep"></div>
+                            <div class="map-title">Radius Lumajang Kota</div>
+                            
+                            <!-- Nodes akan dirender dinamis di sini -->
+                            <div id="map-nodes-container"></div>
+                            
+                            <div class="map-instructions">Dekatkan kursor pada titik untuk info detail.</div>
+                        </div>
+                    </div>
+
+                    <!-- ==============================================
+                         A. PANEL DONATUR SECTIONS
+                         ============================================== -->
+                    
+                    <!-- Section: Donatur Overview -->
+                    <div class="dashboard-section" id="sec-donor-overview">
+                        <div class="section-header">
+                            <h2 class="section-title">Dashboard Donatur</h2>
+                            <button class="btn btn-primary" id="btn-quick-donate">🍲 Donasikan Makanan</button>
+                        </div>
+                        <div class="metrics-row">
+                            <div class="card metric-card">
+                                <div class="metric-label">Total Didonasikan</div>
+                                <div class="metric-val" id="m-don-total">0</div>
+                                <div class="metric-desc">Porsi/Kg makanan terkumpul</div>
+                                <div class="metric-icon">🎁</div>
+                            </div>
+                            <div class="card metric-card">
+                                <div class="metric-label">Donasi Aktif</div>
+                                <div class="metric-val" id="m-don-active">0</div>
+                                <div class="metric-desc">Sedang menunggu klaim</div>
+                                <div class="metric-icon">⏰</div>
+                            </div>
+                            <div class="card metric-card">
+                                <div class="metric-label">Penyelamatan Sukses</div>
+                                <div class="metric-val" id="m-don-success">0</div>
+                                <div class="metric-desc">Diterima oleh Panti Asuhan</div>
+                                <div class="metric-icon">✔️</div>
+                            </div>
+                            <div class="card metric-card">
+                                <div class="metric-label">Dampak Lingkungan</div>
+                                <div class="metric-val" id="m-don-co2">0 Kg</div>
+                                <div class="metric-desc">Potensi Emisi CO2 yang dicegah</div>
+                                <div class="metric-icon">🌱</div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <h3 style="margin-bottom: 20px;">Statistik Penyaluran Makanan</h3>
+                            <div style="height: 300px; position: relative;">
+                                <canvas id="chart-donor-stats"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Form Input Donasi Baru -->
+                    <div class="dashboard-section" id="sec-donor-add">
+                        <div class="section-header">
+                            <h2 class="section-title">Form Donasi Makanan Baru</h2>
+                        </div>
+                        <div class="card">
+                            <form id="form-add-donation">
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                    <div class="form-group">
+                                        <label for="don-food-name">Nama Makanan <span style="color:var(--danger)">*</span></label>
+                                        <input type="text" id="don-food-name" class="form-control" placeholder="Contoh: Nasi Box Ayam Bakar, Roti Tawar" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="don-category">Kategori Makanan <span style="color:var(--danger)">*</span></label>
+                                        <select id="don-category" class="form-control" required>
+                                            <option value="" disabled selected>Pilih Kategori...</option>
+                                            <option value="siap_saji">Makanan Siap Saji (Lauk pauk, sup, nasi kotak)</option>
+                                            <option value="roti">Roti & Kue kering/basah</option>
+                                            <option value="bahan_mentah">Bahan Makanan Mentah (Sayuran, buah, beras)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                                    <div class="form-group">
+                                        <label for="don-quantity">Jumlah / Kuantitas <span style="color:var(--danger)">*</span></label>
+                                        <div style="display: flex; gap: 10px;">
+                                            <input type="number" id="don-quantity" class="form-control" style="flex: 2;" min="1" placeholder="Jumlah" required>
+                                            <input type="text" id="don-unit" class="form-control" style="flex: 1;" placeholder="Satuan (Porsi/Kg/Buah)" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="don-expiry">Waktu Kadaluarsa Kelayakan <span style="color:var(--danger)">*</span></label>
+                                        <input type="datetime-local" id="don-expiry" class="form-control" required>
+                                        <small style="color:var(--text-muted)">Catatan: Makanan yang melewati batas ini otomatis tidak dapat diklaim.</small>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="don-photo">Foto Makanan (Opsional)</label>
+                                    <input type="file" id="don-photo" class="form-control" accept="image/*">
+                                    <small style="color:var(--text-muted)">File gambar maksimal 2MB. Jika kosong, sistem menggunakan gambar default kategori.</small>
+                                    <div id="photo-preview-container" style="display:none; margin-top: 10px;">
+                                        <img id="photo-preview-img" src="" alt="Preview" style="max-height: 120px; border-radius: 8px; border: 1px solid var(--border-color)">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="don-notes">Petunjuk Pengambilan & Catatan Tambahan <span style="color:var(--danger)">*</span></label>
+                                    <textarea id="don-notes" class="form-control" rows="3" placeholder="Tulis instruksi penjemputan, alergi makanan, atau kondisi pengemasan..." required></textarea>
+                                </div>
+
+                                <div style="display: flex; gap: 12px; justify-content: flex-end;">
+                                    <button type="button" class="btn btn-secondary" id="btn-cancel-donate">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Publish Donasi Makanan</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Section: Daftar Donasi Saya -->
+                    <div class="dashboard-section" id="sec-donor-list">
+                        <div class="section-header">
+                            <h2 class="section-title">Daftar Stok & Donasi Saya</h2>
+                        </div>
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="table" id="table-donor-donations">
+                                    <thead>
+                                        <tr>
+                                            <th>Makanan</th>
+                                            <th>Kategori</th>
+                                            <th>Jumlah</th>
+                                            <th>Sisa Kelayakan</th>
+                                            <th>Status</th>
+                                            <th>Penerima</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list-donor-donations-body">
+                                        <!-- Diisi secara dinamis -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Daftar Permintaan Panti Asuhan (Kebutuhan) -->
+                    <div class="dashboard-section" id="sec-donor-requests">
+                        <div class="section-header">
+                            <h2 class="section-title">Permintaan Kebutuhan Panti Asuhan</h2>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 20px;">Daftar kebutuhan pangan mendesak yang diajukan oleh Panti Asuhan. Donatur dapat langsung merespon untuk memenuhi kebutuhan ini.</p>
+                        <div id="list-donor-requests-container">
+                            <!-- Diisi secara dinamis -->
+                        </div>
+                    </div>
+
+
+                    <!-- ==============================================
+                         B. PANEL PENERIMA (PANTI ASUHAN) SECTIONS
+                         ============================================== -->
+                    
+                    <!-- Section: Katalog Donasi Makanan Tersedia -->
+                    <div class="dashboard-section" id="sec-recipient-catalog">
+                        <div class="section-header">
+                            <h2 class="section-title">Katalog Makanan Tersedia</h2>
+                        </div>
+                        
+                        <div class="card filter-bar">
+                            <div class="filter-input" style="flex: 2; min-width: 200px;">
+                                <input type="text" id="catalog-search" class="form-control" placeholder="Cari nama makanan atau donatur...">
+                            </div>
+                            <div class="filter-select">
+                                <select id="catalog-filter-category" class="form-control">
+                                    <option value="">Semua Kategori</option>
+                                    <option value="siap_saji">Makanan Siap Saji</option>
+                                    <option value="roti">Roti & Kue</option>
+                                    <option value="bahan_mentah">Bahan Mentah</option>
+                                </select>
+                            </div>
+                            <div class="filter-select">
+                                <select id="catalog-sort" class="form-control">
+                                    <option value="expiry_asc">Kadaluarsa Terdekat</option>
+                                    <option value="date_desc">Terbaru Diposting</option>
+                                    <option value="qty_desc">Porsi Terbanyak</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Card Grid Catalog -->
+                        <div class="catalog-grid" id="catalog-food-list">
+                            <!-- Kartu makanan dirender dinamis di sini -->
+                        </div>
+                    </div>
+
+                    <!-- Section: Riwayat Klaim & Penerimaan -->
+                    <div class="dashboard-section" id="sec-recipient-claims">
+                        <div class="section-header">
+                            <h2 class="section-title">Klaim & Penjemputan Makanan</h2>
+                        </div>
+                        <div class="card">
+                            <h3 style="margin-bottom: 16px;">Donasi yang Sedang Anda Klaim</h3>
+                            <p style="color:var(--text-secondary); font-size:14px; margin-bottom: 20px;">Silakan lakukan penjemputan fisik secara mandiri ke alamat Donatur yang tertera. Setelah makanan sampai, klik tombol <strong>"Makanan Diterima"</strong> di bawah untuk merampungkan transaksi.</p>
+                            <div class="table-responsive">
+                                <table class="table" id="table-recipient-claims">
+                                    <thead>
+                                        <tr>
+                                            <th>Makanan</th>
+                                            <th>Donatur</th>
+                                            <th>Alamat Penjemputan</th>
+                                            <th>Kontak Donatur</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list-recipient-claims-body">
+                                        <!-- Diisi dinamis -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Permintaan Kebutuhan Mendesak Panti Asuhan -->
+                    <div class="dashboard-section" id="sec-recipient-requests">
+                        <div class="section-header">
+                            <h2 class="section-title">Permintaan Kebutuhan Mendesak</h2>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start;">
+                            <!-- Form Posting Kebutuhan Baru -->
+                            <div class="card">
+                                <h3 style="margin-bottom: 16px;">Ajukan Permintaan Pangan</h3>
+                                <form id="form-add-request">
+                                    <div class="form-group">
+                                        <label for="req-food-type">Jenis Pangan / Kebutuhan <span style="color:var(--danger)">*</span></label>
+                                        <input type="text" id="req-food-type" class="form-control" placeholder="Contoh: Beras, Paket Lauk Pauk, Susu Balita" required>
+                                    </div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                                        <div class="form-group">
+                                            <label for="req-quantity">Jumlah Dibutuhkan <span style="color:var(--danger)">*</span></label>
+                                            <input type="number" id="req-quantity" class="form-control" min="1" placeholder="Jumlah" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="req-unit">Satuan <span style="color:var(--danger)">*</span></label>
+                                            <input type="text" id="req-unit" class="form-control" placeholder="Contoh: Kg, Porsi, Box" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="req-notes">Alasan Urgensi & Detail <span style="color:var(--danger)">*</span></label>
+                                        <textarea id="req-notes" class="form-control" rows="3" placeholder="Tulis alasan urgensi (cth: stok menipis untuk makan malam 30 anak)..." required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-accent" style="width:100%;">Posting ke Platform</button>
+                                </form>
+                            </div>
+                            <!-- Riwayat Permintaan Panti Sendiri -->
+                            <div class="card">
+                                <h3 style="margin-bottom: 16px;">Riwayat Permintaan Kami</h3>
+                                <div class="table-responsive">
+                                    <table class="table" id="table-my-requests">
+                                        <thead>
+                                            <tr>
+                                                <th>Permintaan</th>
+                                                <th>Status</th>
+                                                <th>Dipenuhi Oleh</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="list-my-requests-body">
+                                            <!-- Diisi dinamis -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- ==============================================
+                         C. PANEL ADMIN SECTIONS
+                         ============================================== -->
+                    
+                    <!-- Section: Admin Overview -->
+                    <div class="dashboard-section" id="sec-admin-overview">
+                        <div class="section-header">
+                            <h2 class="section-title">Dashboard Administrator</h2>
+                        </div>
+                        <div class="metrics-row">
+                            <div class="card metric-card">
+                                <div class="metric-label">Total Penyelamatan</div>
+                                <div class="metric-val" id="m-adm-saved">0</div>
+                                <div class="metric-desc">Porsi/Kg makanan sukses disalurkan</div>
+                                <div class="metric-icon">🎉</div>
+                            </div>
+                            <div class="card metric-card">
+                                <div class="metric-label">Stok Tersedia</div>
+                                <div class="metric-val" id="m-adm-active">0</div>
+                                <div class="metric-desc">Listing aktif di Lumajang</div>
+                                <div class="metric-icon">📦</div>
+                            </div>
+                            <div class="card metric-card">
+                                <div class="metric-label">Donatur Terdaftar</div>
+                                <div class="metric-val" id="m-adm-donors">0</div>
+                                <div class="metric-desc">Restoran, hotel, & katering</div>
+                                <div class="metric-icon">🏢</div>
+                            </div>
+                            <div class="card metric-card">
+                                <div class="metric-label">Panti Asuhan Terdaftar</div>
+                                <div class="metric-val" id="m-adm-recipients">0</div>
+                                <div class="metric-desc">Institusi penerima bantuan</div>
+                                <div class="metric-icon">🏠</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-top: 30px;">
+                            <div class="card">
+                                <h3 style="margin-bottom: 20px;">Laju Distribusi Bulanan (Porsi)</h3>
+                                <div style="height: 280px; position: relative;">
+                                    <canvas id="chart-admin-monthly"></canvas>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <h3 style="margin-bottom: 20px;">Proporsi Kategori Makanan</h3>
+                                <div style="height: 280px; display: flex; align-items: center; justify-content: center;">
+                                    <canvas id="chart-admin-categories"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Admin Manual Verification -->
+                    <div class="dashboard-section" id="sec-admin-verify">
+                        <div class="section-header">
+                            <h2 class="section-title">Verifikasi Pendaftaran Akun</h2>
+                        </div>
+                        <p style="color:var(--text-secondary); margin-bottom: 20px;">Verifikasi kelayakan Donatur (HOREKA) dan Panti Asuhan secara manual untuk menjamin keamanan pangan dan keamanan transaksi.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                            <!-- Verifikasi Donatur -->
+                            <div class="card">
+                                <h3 style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                    <span>🏢 Donatur Baru</span>
+                                    <span class="badge badge-secondary" id="badge-count-verify-donor">0</span>
+                                </h3>
+                                <div id="verify-donors-container" style="display: flex; flex-direction: column; gap: 16px;">
+                                    <!-- Diisi dinamis -->
+                                </div>
+                            </div>
+                            <!-- Verifikasi Penerima -->
+                            <div class="card">
+                                <h3 style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                    <span>🏠 Panti Asuhan Baru</span>
+                                    <span class="badge badge-secondary" id="badge-count-verify-recipient">0</span>
+                                </h3>
+                                <div id="verify-recipients-container" style="display: flex; flex-direction: column; gap: 16px;">
+                                    <!-- Diisi dinamis -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Admin Global Transaction Logs -->
+                    <div class="dashboard-section" id="sec-admin-logs">
+                        <div class="section-header">
+                            <h2 class="section-title">Monitoring Transaksi Global</h2>
+                        </div>
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="table" id="table-admin-transactions">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Donasi</th>
+                                            <th>Makanan</th>
+                                            <th>Donatur</th>
+                                            <th>Penerima</th>
+                                            <th>Batas Waktu</th>
+                                            <th>Status</th>
+                                            <th>Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="list-admin-transactions-body">
+                                        <!-- Diisi dinamis -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==========================================
+         FOOTER
+         ========================================== -->
+    <footer style="text-align: center; padding: 40px 0; border-top: 1px solid var(--border-color); font-size: 13px; color: var(--text-muted); background: var(--bg-base)">
+        <div class="container">
+            <p>© 2026 FoodRescue Platform (Sistem Bank Makanan) - Kota Lumajang. Dibuat untuk tujuan edukasi, responsif, dan mudah dipelajari.</p>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         MODAL 1: REGISTER / LOGIN FORM
+         ========================================== -->
+    <div class="modal-overlay" id="modal-auth">
+        <div class="card modal-content">
+            <button class="modal-close" id="btn-close-auth-modal">×</button>
+            
+            <!-- Login Tab View -->
+            <div id="auth-view-login">
+                <h2 style="margin-bottom: 8px;">Masuk ke Platform</h2>
+                <p style="color:var(--text-secondary); font-size:14px; margin-bottom: 24px;">Gunakan akun demo di halaman utama untuk berpindah peran dengan cepat, atau masukkan password di bawah.</p>
+                <form id="form-login-manual">
+                    <div class="form-group">
+                        <label for="login-username">Username</label>
+                        <input type="text" id="login-username" class="form-control" placeholder="Masukkan username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-control" placeholder="Masukkan password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Login</button>
+                    <p style="text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-secondary)">
+                        Belum punya akun? <a href="register.html" id="link-switch-to-register">Daftar Sekarang</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Register Tab View -->
+            <div id="auth-view-register" style="display: none;">
+                <h2 style="margin-bottom: 8px;">Daftar Akun Baru</h2>
+                <p style="color:var(--text-secondary); font-size:14px; margin-bottom: 24px;">Silakan isi formulir di bawah. Akun baru memerlukan persetujuan Admin sebelum dapat digunakan.</p>
+                <form id="form-register">
+                    <div class="form-group">
+                        <label for="reg-role">Mendaftar Sebagai <span style="color:var(--danger)">*</span></label>
+                        <select id="reg-role" class="form-control" required>
+                            <option value="donor">Donatur (Restoran/Hotel/Katering)</option>
+                            <option value="recipient">Penerima (Panti Asuhan/Komunitas)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-name">Nama Institusi / Perusahaan <span style="color:var(--danger)">*</span></label>
+                        <input type="text" id="reg-name" class="form-control" placeholder="Contoh: Hotel Lumajang, Panti Asuhan Kasih" required>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-group">
+                            <label for="reg-username">Username <span style="color:var(--danger)">*</span></label>
+                            <input type="text" id="reg-username" class="form-control" placeholder="Username unik" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Password <span style="color:var(--danger)">*</span></label>
+                            <input type="password" id="reg-password" class="form-control" placeholder="Password minimal 6 karakter" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-phone">Nomor Telepon / WhatsApp <span style="color:var(--danger)">*</span></label>
+                        <input type="tel" id="reg-phone" class="form-control" placeholder="Contoh: 0812xxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-address">Alamat Pengambilan / Lokasi <span style="color:var(--danger)">*</span></label>
+                        <textarea id="reg-address" class="form-control" rows="2" placeholder="Nama Jalan, Kelurahan, Kec. Lumajang..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-accent" style="width: 100%; margin-top: 10px;">Daftar Akun</button>
+                    <p style="text-align: center; margin-top: 20px; font-size: 14px; color: var(--text-secondary)">
+                        Sudah memiliki akun? <a href="#" id="link-switch-to-login">Masuk</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         TOAST NOTIFICATION HUB
+         ========================================== -->
+    <div class="toast-container" id="toast-hub">
+        <!-- Toast dinamis dirender di sini via JS -->
+    </div>
+
+    <!-- Core Javascript Logic -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
