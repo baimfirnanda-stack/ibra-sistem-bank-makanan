@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi FoodRescue — Sistem Bank Makanan Lumajang</title>
+    <meta name="description"
+        content="Dokumentasi lengkap penggunaan Sistem Bank Makanan FoodRescue — platform distribusi makanan surplus dari HOREKA ke panti asuhan di Lumajang.">
+    <meta name="keywords" content="FoodRescue, Bank Makanan, Lumajang, Food Waste, Donasi Makanan, Panti Asuhan">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ============================================================
+     TOP NAVIGATION BAR
+     ============================================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-icon">🍲</span>
+                FoodRescue <span class="logo-sub">Docs</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#overview" class="nav-link">Gambaran Umum</a></li>
+                <li><a href="#alur" class="nav-link">Alur Sistem</a></li>
+                <li><a href="#fitur-donatur" class="nav-link">Donatur</a></li>
+                <li><a href="#fitur-penerima" class="nav-link">Penerima</a></li>
+                <li><a href="#fitur-admin" class="nav-link">Admin</a></li>
+                <li><a href="#team" class="nav-link">Tim</a></li>
+                <li><a href="../index.html" class="btn-demo" target="_blank">🚀 Buka Aplikasi</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-orb orb-1"></div>
+        <div class="hero-orb orb-2"></div>
+
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Dokumentasi Resmi &nbsp;·&nbsp; Versi 1.0.0
+            </div>
+
+            <h1 class="hero-title">
+                Panduan Penggunaan<br>
+                <span class="text-gradient">FoodRescue</span>
+            </h1>
+
+            <p class="hero-desc">
+                Platform koordinasi penyelamatan makanan surplus dari <strong>restoran & hotel</strong>
+                kepada <strong>panti asuhan</strong> di Kota Lumajang, Jawa Timur.
+                Cepat, aman, dan transparan.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#overview" class="btn-primary-lg">📖 Mulai Baca</a>
+                <a href="../index.html" class="btn-outline-lg" target="_blank">🚀 Buka Aplikasi</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-num">3</div>
+                    <div class="stat-label">Peran Pengguna</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-num">10+</div>
+                    <div class="stat-label">Fitur Utama</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-num">100%</div>
+                    <div class="stat-label">Berbasis Web</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-num">0</div>
+                    <div class="stat-label">Instalasi</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-scroll-hint">
+            <span>Scroll untuk membaca</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     CODELABS LAYOUT: SIDEBAR + CONTENT
+     ============================================================ -->
+    <div class="docs-layout">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-title">📚 Daftar Isi</div>
+            <nav>
+                <ul class="sidebar-nav">
+
+                    <li class="sidebar-group">
+                        <div class="sidebar-group-label">Pengenalan</div>
+                        <a href="#overview" class="sidebar-link" data-section="overview">
+                            <span class="s-icon">🏠</span> Gambaran Umum
+                            <span class="s-num">01</span>
+                        </a>
+                        <a href="#alur" class="sidebar-link" data-section="alur">
+                            <span class="s-icon">🔄</span> Alur Sistem
+                            <span class="s-num">02</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-group">
+                        <div class="sidebar-group-label">Panduan per Peran</div>
+                        <a href="#fitur-donatur" class="sidebar-link" data-section="fitur-donatur">
+                            <span class="s-icon">🏢</span> Donatur
+                            <span class="s-num">03</span>
+                        </a>
+                        <a href="#fitur-penerima" class="sidebar-link" data-section="fitur-penerima">
+                            <span class="s-icon">🏠</span> Penerima
+                            <span class="s-num">04</span>
+                        </a>
+                        <a href="#fitur-admin" class="sidebar-link" data-section="fitur-admin">
+                            <span class="s-icon">⚡</span> Administrator
+                            <span class="s-num">05</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-group">
+                        <div class="sidebar-group-label">Lainnya</div>
+                        <a href="#fitur-daftar" class="sidebar-link" data-section="fitur-daftar">
+                            <span class="s-icon">📝</span> Pendaftaran
+                            <span class="s-num">06</span>
+                        </a>
+                        <a href="#team" class="sidebar-link" data-section="team">
+                            <span class="s-icon">👥</span> Tim Pengembang
+                            <span class="s-num">07</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <!-- Reading Progress -->
+            <div class="sidebar-progress">
+                <div class="progress-label">
+                    <span>Progres Membaca</span>
+                    <span id="progress-pct">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN DOCS CONTENT ===== -->
+        <main class="docs-content">
+
+            <!-- ============================================================
+             SECTION 01 — GAMBARAN UMUM
+             ============================================================ -->
+            <section class="section" id="overview">
+                <div class="container">
+                    <div class="section-label">01 — Gambaran Umum</div>
+                    <h2 class="section-title">Apa itu Sistem Bank Makanan?</h2>
+                    <p class="section-desc">
+                        <strong>FoodRescue</strong> adalah platform web yang menghubungkan donatur makanan surplus
+                        (hotel, restoran, katering) dengan panti asuhan yang membutuhkan secara
+                        real-time dan transparan di wilayah Kota Lumajang.
+                    </p>
+
+                    <!-- Info Cards Grid -->
+                    <div class="info-grid">
+                        <div class="info-card card-green">
+                            <div class="info-card-icon">🎯</div>
+                            <h3>Tujuan & Manfaat Sistem</h3>
+                            <ul>
+                                <li>Mengurangi limbah makanan (food waste) sektor HOREKA</li>
+                                <li>Distribusi pangan surplus secara cepat dan aman</li>
+                                <li>Membantu panti asuhan memenuhi kebutuhan pangan harian</li>
+                                <li>Mencatat dampak lingkungan — estimasi reduksi emisi CO₂</li>
+                                <li>Menyediakan data statistik distribusi yang transparan</li>
+                            </ul>
+                        </div>
+                        <div class="info-card card-indigo">
+                            <div class="info-card-icon">👥</div>
+                            <h3>Target Pengguna</h3>
+                            <ul>
+                                <li><strong>Donatur:</strong> Hotel, restoran, katering (HOREKA) di Lumajang</li>
+                                <li><strong>Penerima:</strong> Panti asuhan & komunitas peduli sesama</li>
+                                <li><strong>Administrator:</strong> Petugas Dinas Sosial / Pengurus Pusat FoodRescue
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="info-card card-amber">
+                            <div class="info-card-icon">⚡</div>
+                            <h3>Fitur-Fitur Tersedia</h3>
+                            <ul>
+                                <li>Pendaftaran & verifikasi akun multi-peran</li>
+                                <li>Posting & manajemen donasi makanan real-time</li>
+                                <li>Katalog makanan dengan filter & pencarian cepat</li>
+                                <li>Sistem klaim & validasi penerimaan fisik</li>
+                                <li>Permintaan kebutuhan mendesak (emergency request)</li>
+                                <li>Peta visual sebaran distribusi Lumajang</li>
+                                <li>Dashboard statistik & grafik analitik interaktif</li>
+                                <li>Panel verifikasi administrator</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Tiga Role Card -->
+                    <h3 style="font-size:18px; font-weight:700; color:var(--text-main); margin-bottom:20px;">
+                        Peran Pengguna dalam Sistem
+                    </h3>
+                    <div class="role-cards">
+                        <div class="role-card rc-donor">
+                            <div class="rc-icon">🏢</div>
+                            <div class="rc-role">Peran 1</div>
+                            <div class="rc-name">Donatur<br><small
+                                    style="font-size:12px; font-weight:400; color:var(--text-secondary);">Hotel /
+                                    Restoran / Katering</small></div>
+                            <div class="rc-desc">Mengelola & mempublikasikan donasi makanan surplus, memantau klaim, dan
+                                melihat dampak lingkungan kontribusi mereka.</div>
+                            <div class="rc-cred">
+                                <span class="cred-label">Demo Login Password</span>
+                                <code>donor123</code>
+                            </div>
+                        </div>
+                        <div class="role-card rc-recipient">
+                            <div class="rc-icon">🏠</div>
+                            <div class="rc-role">Peran 2</div>
+                            <div class="rc-name">Penerima<br><small
+                                    style="font-size:12px; font-weight:400; color:var(--text-secondary);">Panti Asuhan /
+                                    Komunitas</small></div>
+                            <div class="rc-desc">Mencari & mengklaim makanan tersedia, membuat permintaan kebutuhan
+                                mendesak, dan mengonfirmasi penerimaan makanan.</div>
+                            <div class="rc-cred">
+                                <span class="cred-label">Demo Login Password</span>
+                                <code>panti123</code>
+                            </div>
+                        </div>
+                        <div class="role-card rc-admin">
+                            <div class="rc-icon">⚡</div>
+                            <div class="rc-role">Peran 3</div>
+                            <div class="rc-name">Administrator<br><small
+                                    style="font-size:12px; font-weight:400; color:var(--text-secondary);">Petugas Dinsos
+                                    / Pengurus</small></div>
+                            <div class="rc-desc">Memverifikasi akun baru, memonitor seluruh transaksi global platform,
+                                dan menganalisis statistik distribusi makanan.</div>
+                            <div class="rc-cred">
+                                <span class="cred-label">Demo Login Password</span>
+                                <code>admin123</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+             SECTION 02 — ALUR SISTEM
+             ============================================================ -->
+            <section class="section section-alt" id="alur">
+                <div class="container">
+                    <div class="section-label">02 — Alur Sistem</div>
+                    <h2 class="section-title">Bagaimana Sistem Bekerja?</h2>
+                    <p class="section-desc">
+                        Berikut adalah alur proses lengkap sistem FoodRescue dari pendaftaran
+                        hingga konfirmasi penerimaan makanan oleh panti asuhan.
+                    </p>
+
+                    <!-- Flow Diagram -->
+                    <div class="flow-diagram">
+                        <div class="flow-step">
+                            <div class="flow-num">STEP 01</div>
+                            <div class="flow-icon">📝</div>
+                            <h4>Pendaftaran</h4>
+                            <p>Donatur atau panti asuhan mengisi formulir pendaftaran. Akun baru berstatus <em>Belum
+                                    Terverifikasi</em>.</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+
+                        <div class="flow-step">
+                            <div class="flow-num">STEP 02</div>
+                            <div class="flow-icon">✅</div>
+                            <h4>Verifikasi Admin</h4>
+                            <p>Administrator meninjau dan menyetujui akun baru dari panel verifikasi khusus.</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+
+                        <div class="flow-step">
+                            <div class="flow-num">STEP 03</div>
+                            <div class="flow-icon">🍱</div>
+                            <h4>Posting Donasi</h4>
+                            <p>Donatur terverifikasi mengisi Form Donasi — nama, kategori, jumlah, dan batas waktu
+                                kelayakan.</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+
+                        <div class="flow-step">
+                            <div class="flow-num">STEP 04</div>
+                            <div class="flow-icon">🛒</div>
+                            <h4>Klaim Penerima</h4>
+                            <p>Panti asuhan membuka katalog, memilih donasi yang sesuai, dan mengklik <strong>Klaim
+                                    Sekarang</strong>.</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+
+                        <div class="flow-step">
+                            <div class="flow-num">STEP 05</div>
+                            <div class="flow-icon">🚗</div>
+                            <h4>Penjemputan</h4>
+                            <p>Panti menjemput makanan secara langsung ke alamat donatur yang tercantum di dashboard
+                                klaim.</p>
+                        </div>
+                        <div class="flow-arrow">→</div>
+
+                        <div class="flow-step">
+                            <div class="flow-num">STEP 06</div>
+                            <div class="flow-icon">🎉</div>
+                            <h4>Konfirmasi</h4>
+                            <p>Panti klik <strong>"Makanan Diterima"</strong> untuk menutup transaksi. Status berubah
+                                menjadi <em>Diterima</em>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Status Summary -->
+                    <div class="flow-summary-card">
+                        <h3>📊 Siklus Status Donasi</h3>
+                        <div class="status-flow">
+                            <div class="status-badge s-tersedia">Tersedia</div>
+                            <div class="s-arrow">→</div>
+                            <div class="status-badge s-diklaim">Diklaim</div>
+                            <div class="s-arrow">→</div>
+                            <div class="status-badge s-diterima">Diterima ✓</div>
+                        </div>
+                        <div class="status-note">
+                            ⚠️ Jika melewati batas waktu kelayakan, donasi otomatis berubah ke status
+                            <span class="s-exp">Kadaluarsa</span> dan tidak dapat diklaim oleh siapapun.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+             SECTION 03 — PANDUAN DONATUR
+             ============================================================ -->
+            <section class="section" id="fitur-donatur">
+                <div class="container">
+                    <div class="section-label">03 — Panduan Donatur</div>
+                    <h2 class="section-title">
+                        Panduan <span class="text-gradient-green">Donatur</span>
+                    </h2>
+                    <p class="section-desc">
+                        Donatur adalah restoran, hotel, atau katering (HOREKA) yang menyumbangkan
+                        makanan surplus layak konsumsi melalui platform FoodRescue.
+                    </p>
+
+                    <!-- 3.1 Login Donatur -->
+                    <div class="guide-block" id="login-donatur">
+                        <div class="guide-header">
+                            <div class="guide-num">3.1</div>
+                            <h3>Login sebagai Donatur</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Terdapat dua cara untuk masuk sebagai Donatur ke dalam sistem:</p>
+                            <ol>
+                                <li><strong>Login Instan (Demo):</strong> Di halaman utama, pada kartu <em>"Donatur
+                                        (Restoran / Hotel)"</em>, pilih akun dari dropdown yang tersedia dan klik kartu
+                                    tersebut.</li>
+                                <li><strong>Login Manual:</strong> Klik tombol <strong>"Masuk"</strong> di pojok kanan
+                                    atas header, lalu isi username dan password secara manual di modal login.</li>
+                            </ol>
+                            <div class="tip-box">
+                                💡 <strong>Akun Demo Donatur:</strong> Pilih salah satu — <code>hotel_plaza</code>,
+                                <code>resto_selera</code>, atau <code>bakery_citra</code> dengan password
+                                <code>donor123</code>.
+                                Akun <code>bakery_citra</code> belum terverifikasi — cocok untuk melihat tampilan akun
+                                yang dibatasi.
+                            </div>
+                            <div class="guide-steps">
+                                <div class="step-item"><span class="step-icon">1️⃣</span> Buka halaman utama aplikasi
+                                    FoodRescue</div>
+                                <div class="step-item"><span class="step-icon">2️⃣</span> Temukan kartu <strong>"Donatur
+                                        (Restoran / Hotel)"</strong></div>
+                                <div class="step-item"><span class="step-icon">3️⃣</span> Pilih akun demo dari dropdown
+                                    <em>"Login Instan Donatur"</em>
+                                </div>
+                                <div class="step-item"><span class="step-icon">4️⃣</span> Dashboard Donatur otomatis
+                                    terbuka</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3.2 Dashboard Donatur -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">3.2</div>
+                            <h3>Memahami Dashboard Donatur</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Setelah login, halaman <strong>Dashboard Donatur</strong> menampilkan ringkasan kinerja
+                                donasi secara visual melalui 4 kartu metrik:</p>
+                            <div class="metrics-grid-doc">
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">🎁</span>
+                                    <div><strong>Total Didonasikan</strong><br><small>Akumulasi seluruh porsi/kg makanan
+                                            yang pernah didonasikan oleh akun ini.</small></div>
+                                </div>
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">⏰</span>
+                                    <div><strong>Donasi Aktif</strong><br><small>Jumlah listing donasi yang saat ini
+                                            aktif dan menunggu diklaim panti asuhan.</small></div>
+                                </div>
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">✔️</span>
+                                    <div><strong>Penyelamatan Sukses</strong><br><small>Total donasi yang sudah berhasil
+                                            diterima oleh panti asuhan (status: Diterima).</small></div>
+                                </div>
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">🌱</span>
+                                    <div><strong>Dampak CO₂</strong><br><small>Estimasi total emisi CO₂ yang berhasil
+                                            dicegah berkat donasi makanan ini.</small></div>
+                                </div>
+                            </div>
+                            <p>Di bawah metrik terdapat <strong>grafik batang (bar chart)</strong> interaktif yang
+                                menampilkan statistik dan tren penyaluran makanan dari waktu ke waktu menggunakan
+                                Chart.js.</p>
+                            <p>Di bagian atas dashboard terdapat <strong>Peta Simulasi Lumajang</strong> yang
+                                menampilkan titik-titik lokasi donatur dan penerima secara visual dengan animasi radar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 3.3 Posting Donasi -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">3.3</div>
+                            <h3>Memposting Donasi Makanan Baru</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Klik tombol <strong>"🍲 Donasikan Makanan"</strong> di dashboard atau pilih menu
+                                <em>"Donasi Makanan Baru"</em> dari sidebar navigasi. Isi formulir dengan data berikut:
+                            </p>
+                            <div class="form-doc-grid">
+                                <div class="form-field-doc required">
+                                    <div class="field-label">Nama Makanan <span class="req">*</span></div>
+                                    <div class="field-desc">Nama jelas makanan yang didonasikan. Contoh: <em>Nasi Box
+                                            Ayam Bakar</em>, <em>Roti Tawar Aneka Rasa</em>.</div>
+                                </div>
+                                <div class="form-field-doc required">
+                                    <div class="field-label">Kategori Makanan <span class="req">*</span></div>
+                                    <div class="field-desc">Pilih salah satu: <strong>Makanan Siap Saji</strong>,
+                                        <strong>Roti & Kue</strong>, atau <strong>Bahan Makanan Mentah</strong>.
+                                    </div>
+                                </div>
+                                <div class="form-field-doc required">
+                                    <div class="field-label">Jumlah & Satuan <span class="req">*</span></div>
+                                    <div class="field-desc">Isi angka jumlah di kolom kiri dan satuan (Porsi / Kg /
+                                        Buah) di kolom kanan.</div>
+                                </div>
+                                <div class="form-field-doc required">
+                                    <div class="field-label">Waktu Kadaluarsa Kelayakan <span class="req">*</span></div>
+                                    <div class="field-desc">Waktu batas makanan masih layak konsumsi. Setelah terlewat,
+                                        donasi <em>otomatis dinonaktifkan</em> sistem.</div>
+                                </div>
+                                <div class="form-field-doc">
+                                    <div class="field-label">Foto Makanan <span class="opt">(Opsional)</span></div>
+                                    <div class="field-desc">Unggah foto makanan maksimal 2MB. Jika kosong, sistem
+                                        menggunakan gambar default sesuai kategori.</div>
+                                </div>
+                                <div class="form-field-doc required">
+                                    <div class="field-label">Catatan & Instruksi <span class="req">*</span></div>
+                                    <div class="field-desc">Instruksi penjemputan, kondisi makanan, informasi alergi,
+                                        atau catatan pengemasan.</div>
+                                </div>
+                            </div>
+                            <div class="warning-box">
+                                ⚠️ Pastikan <strong>waktu kadaluarsa diisi akurat</strong>. Makanan siap saji umumnya
+                                layak 4–6 jam setelah dimasak. Sistem akan otomatis menonaktifkan donasi yang sudah
+                                melewati batas waktu.
+                            </div>
+                            <p>Klik <strong>"Publish Donasi Makanan"</strong> — donasi langsung muncul di katalog yang
+                                dapat dilihat oleh seluruh panti asuhan terverifikasi.</p>
+                        </div>
+                    </div>
+
+                    <!-- 3.4 Memantau Stok -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">3.4</div>
+                            <h3>Memantau Daftar Stok & Donasi</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Menu <strong>"Daftar Stok & Donasi Saya"</strong> menampilkan tabel seluruh riwayat
+                                donasi yang pernah diposting. Kolom tabel mencakup:</p>
+                            <div class="table-doc">
+                                <div class="td-row td-header">
+                                    <span>Makanan</span><span>Kategori</span><span>Jumlah</span>
+                                    <span>Sisa Kelayakan</span><span>Status</span><span>Penerima</span>
+                                </div>
+                                <div class="td-row">
+                                    <span>Nama makanan</span><span>Jenis kategori</span><span>Porsi/Kg</span>
+                                    <span>Hitung mundur</span><span>Badge warna</span><span>Nama panti</span>
+                                </div>
+                            </div>
+                            <p style="margin-top:14px;">Kode warna badge status:
+                                <span class="badge-doc green">Tersedia</span>
+                                <span class="badge-doc yellow">Diklaim</span>
+                                <span class="badge-doc blue">Diterima</span>
+                                <span class="badge-doc red">Kadaluarsa</span>
+                            </p>
+                            <div class="tip-box">
+                                💡 Donasi dengan sisa waktu &lt; 2 jam otomatis ditandai <strong>peringatan dini
+                                    merah</strong> di kolom Sisa Kelayakan untuk mendorong klaim segera.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3.5 Lihat Permintaan Panti -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">3.5</div>
+                            <h3>Merespons Permintaan Kebutuhan Panti Asuhan</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Menu <strong>"Permintaan Kebutuhan Panti Asuhan"</strong> menampilkan seluruh permintaan
+                                mendesak yang dikirimkan oleh panti asuhan ke platform. Setiap kartu permintaan
+                                menampilkan:</p>
+                            <div class="guide-steps">
+                                <div class="step-item"><span class="step-icon">📋</span> Jenis pangan atau kebutuhan
+                                    yang diminta</div>
+                                <div class="step-item"><span class="step-icon">🔢</span> Jumlah dan satuan yang
+                                    dibutuhkan</div>
+                                <div class="step-item"><span class="step-icon">❗</span> Alasan urgensi yang ditulis
+                                    panti asuhan</div>
+                                <div class="step-item"><span class="step-icon">🏠</span> Nama panti asuhan yang
+                                    mengajukan permintaan</div>
+                            </div>
+                            <div class="tip-box">
+                                💡 Permintaan berstatus <span class="badge-doc yellow">Menunggu</span> belum terpenuhi.
+                                Donatur dapat menyiapkan donasi yang sesuai untuk <strong>merespons permintaan ini
+                                    secara langsung</strong>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+             SECTION 04 — PANDUAN PENERIMA
+             ============================================================ -->
+            <section class="section section-alt" id="fitur-penerima">
+                <div class="container">
+                    <div class="section-label">04 — Panduan Penerima</div>
+                    <h2 class="section-title">
+                        Panduan <span class="text-gradient-indigo">Penerima</span>
+                    </h2>
+                    <p class="section-desc">
+                        Penerima adalah panti asuhan atau komunitas sosial yang mencari,
+                        mengklaim, dan menerima makanan donasi yang tersedia di platform.
+                    </p>
+
+                    <!-- 4.1 Login -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">4.1</div>
+                            <h3>Login sebagai Penerima</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Di halaman utama, temukan kartu <em>"Penerima (Panti Asuhan)"</em> dan pilih akun demo
+                                dari dropdown yang tersedia.</p>
+                            <div class="tip-box">
+                                💡 <strong>Akun Demo Penerima:</strong> <code>panti_kasih</code> atau
+                                <code>panti_harapan</code> dengan password <code>panti123</code>.
+                                Akun <code>peduli_sesama</code> belum terverifikasi — untuk melihat tampilan akun
+                                terbatas.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4.2 Katalog -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">4.2</div>
+                            <h3>Menelusuri Katalog Makanan</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Menu <strong>"Katalog Makanan Tersedia"</strong> menampilkan semua donasi aktif dalam
+                                bentuk kartu grid. Tersedia tiga alat bantu pencarian dan filter:</p>
+                            <div class="filter-doc-list">
+                                <div class="filter-item">
+                                    <span class="filter-icon">🔍</span>
+                                    <div><strong>Pencarian Teks</strong> — Ketik nama makanan atau nama donatur untuk
+                                        mempersempit hasil.</div>
+                                </div>
+                                <div class="filter-item">
+                                    <span class="filter-icon">📂</span>
+                                    <div><strong>Filter Kategori</strong> — Saring berdasarkan Makanan Siap Saji, Roti &
+                                        Kue, atau Bahan Mentah.</div>
+                                </div>
+                                <div class="filter-item">
+                                    <span class="filter-icon">🔃</span>
+                                    <div><strong>Urutan / Sorting</strong> — Urutkan berdasarkan: <em>Kadaluarsa
+                                            Terdekat</em>, <em>Terbaru Diposting</em>, atau <em>Porsi Terbanyak</em>.
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Setiap kartu makanan menampilkan: foto, nama makanan, donatur, kuantitas, kategori, sisa
+                                waktu kelayakan, dan tombol <strong>"Klaim Sekarang"</strong>.</p>
+                            <div class="warning-box">
+                                ⚠️ Kartu berlabel <strong>🔴 URGENT</strong> berarti batas waktu kelayakan kurang dari 2
+                                jam. Segera klaim dan atur penjemputan secepatnya!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4.3 Klaim -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">4.3</div>
+                            <h3>Mengklaim & Menjemput Makanan</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Setelah mengklik <strong>"Klaim Sekarang"</strong> pada kartu donasi, status berubah
+                                menjadi <em>Diklaim</em> dan donasi tersebut tidak dapat diklaim oleh panti lain. Proses
+                                selanjutnya:</p>
+                            <div class="guide-steps">
+                                <div class="step-item"><span class="step-icon">📍</span> Buka menu <strong>"Klaim &
+                                        Penjemputan Makanan"</strong> — catat alamat penjemputan</div>
+                                <div class="step-item"><span class="step-icon">📞</span> Hubungi nomor kontak donatur
+                                    yang tertera untuk koordinasi penjemputan</div>
+                                <div class="step-item"><span class="step-icon">🚗</span> Lakukan penjemputan fisik
+                                    mandiri ke lokasi donatur</div>
+                                <div class="step-item"><span class="step-icon">✅</span> Setelah makanan diterima, klik
+                                    <strong>"Makanan Diterima"</strong> untuk menutup transaksi
+                                </div>
+                            </div>
+                            <p>Seluruh riwayat klaim (aktif maupun selesai) dapat dipantau di menu <strong>"Klaim &
+                                    Penjemputan Makanan"</strong> pada sidebar dashboard.</p>
+                        </div>
+                    </div>
+
+                    <!-- 4.4 Permintaan Mendesak -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">4.4</div>
+                            <h3>Mengajukan Permintaan Kebutuhan Mendesak</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Jika tidak ada donasi tersedia di katalog dan stok pangan panti menipis, gunakan fitur
+                                <strong>"Permintaan Kebutuhan Mendesak"</strong> untuk memposting kebutuhan ke platform.
+                            </p>
+                            <p>Isi formulir permintaan yang terdiri dari tiga kolom wajib:</p>
+                            <div class="form-doc-grid">
+                                <div class="form-field-doc required">
+                                    <div class="field-label">Jenis Pangan / Kebutuhan <span class="req">*</span></div>
+                                    <div class="field-desc">Jenis makanan yang dibutuhkan. Contoh: <em>Beras, Paket Lauk
+                                            Pauk, Susu Balita</em>.</div>
+                                </div>
+                                <div class="form-field-doc required">
+                                    <div class="field-label">Jumlah & Satuan <span class="req">*</span></div>
+                                    <div class="field-desc">Berapa banyak yang dibutuhkan dan satuannya. Contoh: <em>5
+                                            Kg</em>, <em>30 Porsi</em>, <em>3 Box</em>.</div>
+                                </div>
+                                <div class="form-field-doc required" style="grid-column: 1 / -1;">
+                                    <div class="field-label">Alasan Urgensi <span class="req">*</span></div>
+                                    <div class="field-desc">Jelaskan kondisi darurat secara jelas. Contoh: <em>"Stok
+                                            makan malam 40 anak habis, jadwal masak terganggu"</em>. Informasi ini
+                                        membantu donatur merespons dengan tepat.</div>
+                                </div>
+                            </div>
+                            <p>Permintaan yang diposting langsung terlihat oleh semua donatur di panel <em>"Permintaan
+                                    Kebutuhan Panti Asuhan"</em> pada dashboard mereka.</p>
+                            <p>Riwayat semua permintaan yang pernah diajukan dapat dilihat di tabel <strong>"Riwayat
+                                    Permintaan Kami"</strong> di halaman yang sama.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+             SECTION 05 — PANDUAN ADMINISTRATOR
+             ============================================================ -->
+            <section class="section" id="fitur-admin">
+                <div class="container">
+                    <div class="section-label">05 — Panduan Administrator</div>
+                    <h2 class="section-title">
+                        Panduan <span class="text-gradient-red">Administrator</span>
+                    </h2>
+                    <p class="section-desc">
+                        Administrator adalah petugas Dinas Sosial atau pengurus pusat FoodRescue yang bertanggung jawab
+                        atas verifikasi akun, keamanan sistem, dan monitoring distribusi secara global.
+                    </p>
+
+                    <!-- 5.1 Login Admin -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">5.1</div>
+                            <h3>Login sebagai Administrator</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Admin memiliki halaman login <strong>terpisah dan khusus</strong> untuk keamanan sistem.
+                                Terdapat dua cara akses:</p>
+                            <ol>
+                                <li>Klik link <strong>"Halaman Login Admin Khusus"</strong> yang ada di bagian bawah
+                                    halaman utama, atau</li>
+                                <li>Buka langsung halaman <a href="../admin-login.html" target="_blank"
+                                        class="inline-link">admin-login.html ↗</a></li>
+                            </ol>
+                            <div class="tip-box">
+                                💡 <strong>Kredensial Demo Admin:</strong> Username: <code>admin</code> &nbsp;|&nbsp;
+                                Password: <code>admin123</code>
+                            </div>
+                            <p>Setelah login berhasil, sistem otomatis mengarahkan ke dashboard admin di halaman utama
+                                dengan semua panel administratif aktif.</p>
+                        </div>
+                    </div>
+
+                    <!-- 5.2 Dashboard Admin -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">5.2</div>
+                            <h3>Dashboard Administrator — Ringkasan Global</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Dashboard admin menampilkan kondisi platform secara keseluruhan melalui 4 metrik global:
+                            </p>
+                            <div class="metrics-grid-doc">
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">🎉</span>
+                                    <div><strong>Total Penyelamatan</strong><br><small>Total porsi/kg makanan yang
+                                            berhasil disalurkan ke panti asuhan secara global di seluruh
+                                            platform.</small></div>
+                                </div>
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">📦</span>
+                                    <div><strong>Stok Tersedia</strong><br><small>Jumlah listing donasi yang saat ini
+                                            aktif dan menunggu klaim di seluruh Lumajang.</small></div>
+                                </div>
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">🏢</span>
+                                    <div><strong>Donatur Terdaftar</strong><br><small>Total restoran, hotel, dan
+                                            katering yang sudah terdaftar (terverifikasi & belum).</small></div>
+                                </div>
+                                <div class="metric-doc">
+                                    <span class="metric-icon-doc">🏠</span>
+                                    <div><strong>Panti Terdaftar</strong><br><small>Total panti asuhan dan komunitas
+                                            yang sudah mendaftar di platform.</small></div>
+                                </div>
+                            </div>
+                            <p style="margin-top:16px;">Dashboard admin juga menyertakan dua grafik interaktif
+                                (Chart.js):</p>
+                            <div class="guide-steps">
+                                <div class="step-item"><span class="step-icon">📈</span> <strong>Laju Distribusi
+                                        Bulanan</strong> — Grafik garis tren distribusi makanan per bulan dalam porsi
+                                </div>
+                                <div class="step-item"><span class="step-icon">🥧</span> <strong>Proporsi Kategori
+                                        Makanan</strong> — Grafik pie komposisi kategori donasi (Siap Saji / Roti /
+                                    Bahan Mentah)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5.3 Verifikasi Akun -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">5.3</div>
+                            <h3>Verifikasi Pendaftaran Akun Baru</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Menu <strong>"Verifikasi Pendaftaran Akun"</strong> adalah fungsi terpenting
+                                administrator. Akun baru tidak dapat beroperasi penuh sebelum mendapat persetujuan
+                                admin.</p>
+                            <div class="two-col-doc">
+                                <div class="col-doc">
+                                    <h4>🏢 Panel Donatur Baru</h4>
+                                    <p>Daftar restoran/hotel/katering yang baru mendaftar dan menunggu verifikasi
+                                        kelayakan sebagai donatur pangan.</p>
+                                    <p>Admin meninjau: nama institusi, alamat, dan kontak. Jika valid, klik
+                                        <strong>Verifikasi ✓</strong> untuk mengaktifkan. Jika mencurigakan, klik
+                                        <strong>Tolak ✗</strong>.
+                                    </p>
+                                </div>
+                                <div class="col-doc">
+                                    <h4>🏠 Panel Panti Asuhan Baru</h4>
+                                    <p>Daftar panti asuhan atau komunitas yang baru mendaftar dan memerlukan verifikasi
+                                        identitas lembaga.</p>
+                                    <p>Proses verifikasi identik — admin meninjau data dan memutuskan apakah akun layak
+                                        untuk disetujui atau ditolak.</p>
+                                </div>
+                            </div>
+                            <div class="warning-box">
+                                ⚠️ Akun belum terverifikasi tidak dapat memposting donasi (donatur) atau mengklaim
+                                makanan (penerima). Verifikasi tepat waktu sangat penting agar sistem berjalan optimal.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5.4 Monitoring Global -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">5.4</div>
+                            <h3>Monitoring Transaksi Global</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Menu <strong>"Monitoring Transaksi Global"</strong> menyajikan tabel komprehensif semua
+                                donasi dari seluruh donatur di platform:</p>
+                            <div class="table-doc">
+                                <div class="td-row td-header">
+                                    <span>ID Donasi</span><span>Makanan</span><span>Donatur</span>
+                                    <span>Penerima</span><span>Batas Waktu</span><span>Status</span>
+                                </div>
+                                <div class="td-row">
+                                    <span>Kode unik</span><span>Nama makanan</span><span>Nama donatur</span>
+                                    <span>Nama penerima</span><span>Waktu kadaluarsa</span><span>Status donasi</span>
+                                </div>
+                            </div>
+                            <p style="margin-top:14px;">Tabel ini memungkinkan admin untuk memantau semua transaksi,
+                                mendeteksi anomali, dan memastikan keamanan serta kelancaran distribusi pangan di
+                                seluruh Lumajang.</p>
+                        </div>
+                    </div>
+
+                    <!-- 5.5 Peta Visual -->
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">5.5</div>
+                            <h3>Peta Sebaran & Status Distribusi</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Di bagian atas dashboard terdapat <strong>Peta Simulasi Kota Lumajang</strong> dengan
+                                animasi radar yang menampilkan titik-titik lokasi seluruh institusi yang terdaftar:</p>
+                            <div class="guide-steps">
+                                <div class="step-item"><span class="step-icon" style="color:#10b981;">🟢</span> Titik
+                                    <strong>Hijau</strong> — Lokasi Donatur (hotel, restoran, katering)
+                                </div>
+                                <div class="step-item"><span class="step-icon" style="color:#6366f1;">🔵</span> Titik
+                                    <strong>Biru/Ungu</strong> — Lokasi Panti Asuhan atau komunitas penerima
+                                </div>
+                            </div>
+                            <p>Arahkan (hover) kursor ke titik untuk melihat pop-up detail: nama institusi, status
+                                verifikasi, dan jumlah donasi/klaim.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+             SECTION 06 — PENDAFTARAN AKUN
+             ============================================================ -->
+            <section class="section section-alt" id="fitur-daftar">
+                <div class="container">
+                    <div class="section-label">06 — Pendaftaran Akun</div>
+                    <h2 class="section-title">Cara Mendaftar Akun Baru</h2>
+                    <p class="section-desc">
+                        Institusi baru (donatur atau panti asuhan) yang ingin bergabung ke platform
+                        FoodRescue dapat mendaftar melalui halaman pendaftaran yang tersedia.
+                    </p>
+
+                    <div class="guide-block">
+                        <div class="guide-header">
+                            <div class="guide-num">6.1</div>
+                            <h3>Langkah-Langkah Pendaftaran</h3>
+                        </div>
+                        <div class="guide-content">
+                            <p>Klik tombol <strong>"Daftar Akun Baru"</strong> di halaman utama, atau buka langsung
+                                halaman <a href="../register.html" target="_blank" class="inline-link">register.html
+                                    ↗</a></p>
+                            <div class="guide-steps">
+                                <div class="step-item"><span class="step-icon">1️⃣</span> Pilih peran: <strong>Donatur
+                                        (HOREKA)</strong> atau <strong>Penerima (Panti Asuhan)</strong> melalui tombol
+                                    pilihan visual</div>
+                                <div class="step-item"><span class="step-icon">2️⃣</span> Isi <strong>Nama Institusi /
+                                        Perusahaan</strong> sesuai nama resmi</div>
+                                <div class="step-item"><span class="step-icon">3️⃣</span> Buat <strong>Username</strong>
+                                    unik dan <strong>Password</strong> minimal 6 karakter</div>
+                                <div class="step-item"><span class="step-icon">4️⃣</span> Masukkan <strong>Nomor Telepon
+                                        / WhatsApp</strong> aktif untuk koordinasi</div>
+                                <div class="step-item"><span class="step-icon">5️⃣</span> Isi <strong>Alamat
+                                        Lengkap</strong> lokasi institusi di Kota Lumajang</div>
+                                <div class="step-item"><span class="step-icon">6️⃣</span> Klik <strong>"Daftar Akun
+                                        Baru"</strong> — akun tersimpan dengan status <em>Belum Terverifikasi</em></div>
+                            </div>
+                            <div class="tip-box">
+                                💡 Setelah mendaftar, akun perlu diverifikasi oleh Administrator sebelum dapat digunakan
+                                sepenuhnya. Hubungi petugas Dinas Sosial Lumajang untuk mempercepat proses verifikasi.
+                            </div>
+                            <div class="warning-box">
+                                ⚠️ Pastikan username yang dipilih <strong>belum pernah digunakan</strong> oleh institusi
+                                lain. Sistem akan menampilkan peringatan jika username sudah terdaftar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+             SECTION 07 — TIM PENGEMBANG
+             ============================================================ -->
+            <section class="section" id="team">
+                <div class="container">
+                    <div class="section-label">07 — Tim Pengembang</div>
+                    <h2 class="section-title">Tim Pengembang Proyek</h2>
+                    <p class="section-desc">
+                        Sistem Bank Makanan FoodRescue dikembangkan oleh tim mahasiswa sebagai
+                        proyek perangkat lunak berbasis web untuk mendukung ketahanan pangan
+                        di Kota Lumajang, Jawa Timur.
+                    </p>
+
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-avatar" style="background:linear-gradient(135deg,#10b981,#059669);">D</div>
+                            <div class="team-info">
+                                <div class="team-name">Firnanda Ibrahim</div>
+                                <div class="team-role">Project Lead & Backend Logic</div>
+                                <div class="team-desc">Merancang arsitektur sistem, mengembangkan seluruh logika bisnis
+                                    aplikasi (app.js), dan mengelola struktur data serta mock data (data.js). Juga
+                                    berperan sebagai Admin Sistem dalam demo aplikasi.</div>
+                            </div>
+                            <div class="team-badge">Lead Dev</div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="team-avatar" style="background:linear-gradient(135deg,#6366f1,#4f46e5);">A</div>
+                            <div class="team-info">
+                                <div class="team-name">M Fajjar roddin</div>
+                                <div class="team-role">Frontend Developer & UI/UX Designer</div>
+                                <div class="team-desc">Merancang dan mengimplementasikan seluruh antarmuka pengguna,
+                                    sistem desain, komponen visual, dan CSS responsif (app.css) menggunakan prinsip
+                                    modern dark-mode design.</div>
+                            </div>
+                            <div class="team-badge">UI/UX</div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="team-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706);">A</div>
+                            <div class="team-info">
+                                <div class="team-name">Roriut thoriqi</div>
+                                <div class="team-role">Quality Assurance & Dokumentasi</div>
+                                <div class="team-desc">Bertanggung jawab atas pengujian seluruh fitur sistem, pembuatan
+                                    skenario demo, penyusunan test case, serta penulisan dan penerbitan dokumentasi
+                                    resmi ini via GitHub Pages.</div>
+                            </div>
+                            <div class="team-badge">QA & Docs</div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="team-avatar" style="background:linear-gradient(135deg,#ef4444,#dc2626);">A</div>
+                            <div class="team-info">
+                                <div class="team-name">Firnanda Ibrahim</div>
+                                <div class="team-role">Business Analyst & System Design</div>
+                                <div class="team-desc">Melakukan analisis kebutuhan pengguna, menyusun flowchart dan
+                                    diagram alur sistem, mendefinisikan user stories, serta mengkoordinasikan komunikasi
+                                    antar tim pengembang selama proyek.</div>
+                            </div>
+                            <div class="team-badge">Analyst</div>
+                        </div>
+                    </div>
+
+                    <!-- Closing Note -->
+                    <div class="closing-card">
+                        <div class="closing-icon">🍲</div>
+                        <h3>Tentang Proyek FoodRescue</h3>
+                        <p>
+                            <strong>FoodRescue — Sistem Bank Makanan</strong> adalah proyek perangkat lunak berbasis web
+                            yang dikembangkan
+                            untuk menyelesaikan permasalahan <em>food waste</em> dan ketimpangan distribusi pangan
+                            di Kota Lumajang, Jawa Timur. Sistem ini menghubungkan sektor HOREKA dengan panti asuhan
+                            secara efisien dan transparan.
+                        </p>
+                        <p>
+                            Proyek ini dibangun menggunakan teknologi web standar tanpa framework eksternal sehingga
+                            ringan, cepat, dan mudah dipelajari. Seluruh data yang ditampilkan adalah data simulasi
+                            (mock data) di <code>localStorage</code> browser untuk keperluan demonstrasi.
+                        </p>
+                        <div class="closing-tech">
+                            <span>HTML5</span>
+                            <span>CSS3 Vanilla</span>
+                            <span>JavaScript ES6+</span>
+                            <span>Chart.js</span>
+                            <span>LocalStorage API</span>
+                            <span>GitHub Pages</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main><!-- /.docs-content -->
+    </div><!-- /.docs-layout -->
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo">🍲 FoodRescue</div>
+                <p>Platform Bank Makanan Digital untuk Kota Lumajang.<br>
+                    Menyelamatkan makanan surplus, memberi makan lebih banyak orang.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4>Dokumentasi</h4>
+                <ul>
+                    <li><a href="#overview">Gambaran Umum</a></li>
+                    <li><a href="#alur">Alur Sistem</a></li>
+                    <li><a href="#fitur-donatur">Panduan Donatur</a></li>
+                    <li><a href="#fitur-penerima">Panduan Penerima</a></li>
+                    <li><a href="#fitur-admin">Panduan Admin</a></li>
+                    <li><a href="#fitur-daftar">Pendaftaran</a></li>
+                </ul>
+            </div>
+            <div class="footer-links-group">
+                <h4>Akses Aplikasi</h4>
+                <ul>
+                    <li><a href="../index.html" target="_blank">🚀 Buka Aplikasi Utama</a></li>
+                    <li><a href="../register.html" target="_blank">📝 Daftar Akun Baru</a></li>
+                    <li><a href="../admin-login.html" target="_blank">⚡ Login Admin</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 FoodRescue — Sistem Bank Makanan, Kota Lumajang &nbsp;·&nbsp;
+                Dokumentasi Proyek Perangkat Lunak &nbsp;·&nbsp; Diterbitkan via GitHub Pages</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+    <!-- Sidebar Toggle (Mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle" style="display:none;">
+        📚 Daftar Isi
+    </button>
+
+    <!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+    <script>
+        (function () {
+            /* ---- Navbar scroll effect ---- */
+            const navbar = document.getElementById('navbar');
+            const backToTop = document.getElementById('backToTop');
+            const progFill = document.getElementById('progress-fill');
+            const progPct = document.getElementById('progress-pct');
+
+            window.addEventListener('scroll', () => {
+                const scrolled = window.scrollY;
+
+                // Navbar
+                navbar.classList.toggle('scrolled', scrolled > 60);
+
+                // Back-to-top
+                backToTop.classList.toggle('visible', scrolled > 300);
+
+                // Reading progress bar
+                const docH = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docH > 0 ? Math.round((scrolled / docH) * 100) : 0;
+                progFill.style.width = pct + '%';
+                progPct.textContent = pct + '%';
+            });
+
+            /* ---- Back to top ---- */
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            /* ---- Hamburger (mobile nav) ---- */
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('open');
+                navLinks.classList.toggle('open');
+            });
+
+            /* ---- Sidebar toggle (tablet / mobile) ---- */
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth <= 1100) {
+                sidebarToggle.style.display = 'flex';
+            }
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+            // Close sidebar when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            /* ---- Active sidebar & navbar link on scroll ---- */
+            const sections = document.querySelectorAll('section[id]');
+            const sidebarLinks = document.querySelectorAll('.sidebar-link[data-section]');
+            const navAnchors = document.querySelectorAll('.nav-link');
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const id = entry.target.id;
+
+                    // Sidebar
+                    sidebarLinks.forEach(a => {
+                        a.classList.toggle('active', a.dataset.section === id);
+                    });
+                    // Navbar
+                    navAnchors.forEach(a => {
+                        a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+                    });
+                });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+
+            sections.forEach(s => sectionObserver.observe(s));
+
+            /* ---- Smooth scroll for all anchor links ---- */
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (!target) return;
+                    e.preventDefault();
+                    const offset = navbar.offsetHeight + 24;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('open');
+                    sidebar.classList.remove('open');
+                });
+            });
+
+            /* ---- Animate elements on scroll (Intersection Observer) ---- */
+            const animTargets = document.querySelectorAll(
+                '.guide-block, .info-card, .role-card, .team-card, .flow-step, .flow-summary-card, .closing-card'
+            );
+            const animObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, i) => {
+                    if (entry.isIntersecting) {
+                        // Stagger delay for grid items
+                        const delay = (entry.target.dataset.delay || 0) + 'ms';
+                        entry.target.style.transitionDelay = delay;
+                        entry.target.classList.add('animate-in');
+                        animObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.08 });
+
+            // Add stagger to grid items
+            document.querySelectorAll('.info-grid .info-card').forEach((el, i) => el.dataset.delay = i * 100);
+            document.querySelectorAll('.role-cards .role-card').forEach((el, i) => el.dataset.delay = i * 120);
+            document.querySelectorAll('.team-grid .team-card').forEach((el, i) => el.dataset.delay = i * 100);
+            document.querySelectorAll('.flow-diagram .flow-step').forEach((el, i) => el.dataset.delay = i * 80);
+
+            animTargets.forEach(el => animObserver.observe(el));
+
+            /* ---- Resize handler ---- */
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 1100) {
+                    sidebarToggle.style.display = 'none';
+                    sidebar.classList.remove('open');
+                } else {
+                    sidebarToggle.style.display = 'flex';
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>
